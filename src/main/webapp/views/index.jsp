@@ -4,209 +4,290 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Futuristic Job Portal</title>
+    <title>Aero Jobs - Next-Gen Career Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Reset & Basics */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --dark-btn: #0f172a;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --bg-page: #f8fafc;
+            --card-bg: #ffffff;
+            --border-subtle: #e2e8f0;
         }
 
         body {
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: #ffffff;
+            background-color: var(--bg-page);
+            background-image:
+                    radial-gradient(at 15% 15%, rgba(99, 102, 241, 0.12) 0px, transparent 50%),
+                    radial-gradient(at 85% 20%, rgba(168, 85, 247, 0.1) 0px, transparent 50%),
+                    radial-gradient(at 50% 80%, rgba(224, 231, 255, 0.5) 0px, transparent 60%);
+            color: var(--text-dark);
             min-height: 100vh;
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Glassmorphism Navbar */
+        /* SaaS Header Navbar */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5% ;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 18px 8%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-subtle);
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .logo {
-            font-size: 26px;
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
             font-weight: 800;
-            color: #00e5ff;
-            text-shadow: 0 0 10px rgba(0, 229, 255, 0.6);
-            letter-spacing: 2px;
-            cursor: pointer;
+            font-size: 18px;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-dark);
         }
 
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 40px;
+            align-items: center;
+            gap: 32px;
         }
 
         .nav-links li a {
             text-decoration: none;
-            color: #d1d5db;
-            font-size: 16px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 8px 16px;
-            border-radius: 8px;
+            color: var(--text-muted);
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.2s ease;
         }
 
         .nav-links li a:hover {
-            color: #ffffff;
-            background: rgba(0, 229, 255, 0.1);
-            box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+            color: var(--primary);
+        }
+
+        .nav-right-btn {
+            background: var(--dark-btn);
+            color: #ffffff !important;
+            padding: 10px 22px;
+            border-radius: 9999px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        .nav-right-btn:hover {
+            background: #1e293b;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
         }
 
         /* Hero Section */
         .hero {
+            flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 120px 20px;
-            min-height: calc(100vh - 80px);
+            padding: 80px 20px 100px;
             position: relative;
         }
 
+        .announcement-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #ffffff;
+            border: 1px solid var(--border-subtle);
+            padding: 6px 16px;
+            border-radius: 9999px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+            margin-bottom: 24px;
+        }
+
         .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 25px;
-            background: linear-gradient(to right, #00e5ff, #e000ff);
+            font-size: 3.8rem;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            line-height: 1.15;
+            color: var(--text-dark);
+            max-width: 820px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: fadeInDown 1s ease-out;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            color: #b3b3b3;
-            max-width: 650px;
-            margin-bottom: 45px;
-            line-height: 1.7;
-            animation: fadeInUp 1s ease-out 0.2s both;
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 620px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            font-weight: 500;
         }
 
-        /* Interactive Buttons */
         .cta-buttons {
             display: flex;
-            gap: 25px;
-            animation: fadeInUp 1s ease-out 0.4s both;
+            gap: 16px;
+            align-items: center;
         }
 
         .btn {
-            padding: 15px 35px;
-            font-size: 16px;
-            font-weight: 600;
+            padding: 14px 28px;
+            font-size: 15px;
+            font-weight: 700;
             text-decoration: none;
-            border-radius: 30px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
+            border-radius: 9999px;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn-primary {
-            background: transparent;
-            color: #00e5ff;
-            border: 2px solid #00e5ff;
-            box-shadow: 0 0 15px rgba(0, 229, 255, 0.2), inset 0 0 10px rgba(0, 229, 255, 0.1);
+            background: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
         }
 
         .btn-primary:hover {
-            background: #00e5ff;
-            color: #0a0a0a;
-            box-shadow: 0 0 25px rgba(0, 229, 255, 0.8), inset 0 0 15px rgba(255, 255, 255, 0.5);
-            transform: translateY(-5px);
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
         }
 
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.05);
-            color: #ffffff;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
+            background: #ffffff;
+            color: var(--text-dark);
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            background: #f1f5f9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
         }
 
-        /* Ambient Glow Effects */
-        .ambient-glow {
+        /* Floating Pill Tags */
+        .floating-pill {
             position: absolute;
-            width: 400px;
-            height: 400px;
-            background: #e000ff;
+            background: #ffffff;
+            border: 1px solid var(--border-subtle);
+            padding: 10px 18px;
+            border-radius: 9999px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-dark);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pill-dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
             border-radius: 50%;
-            filter: blur(200px);
-            z-index: -1;
-            opacity: 0.2;
-            top: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: pulse 6s infinite alternate;
         }
 
-        /* Simple Animations */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .pill-1 { top: 22%; left: 10%; }
+        .pill-2 { top: 28%; right: 10%; }
+
+        @media (max-width: 900px) {
+            .floating-pill { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            nav { padding: 15px 5%; }
+            .nav-links { gap: 15px; }
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.1; transform: translateX(-50%) scale(0.9); }
-            100% { opacity: 0.3; transform: translateX(-50%) scale(1.1); }
-        }
-
-        /* Paste this at the bottom of the CSS in all 4 Status JSPs */
-        @media (max-width: 768px) {
-            nav { flex-direction: column; gap: 15px; padding: 15px 5%; }
-            .nav-links { flex-wrap: wrap; justify-content: center; gap: 10px; }
-            .status-card { padding: 30px 20px; margin: 10px; }
-            h1 { font-size: 1.6rem; }
-            .icon { font-size: 50px; }
-            .btn { width: 100%; text-align: center; }
+        @media (max-width: 600px) {
+            nav { flex-direction: column; gap: 15px; }
+            .cta-buttons { flex-direction: column; width: 100%; }
+            .btn { width: 100%; }
         }
     </style>
 </head>
 <body>
 
-<!-- Top Dashboard Navbar -->
 <nav>
-    <div class="logo">AERO JOBS</div>
+    <a href="/home" class="logo-wrap">
+        <div class="logo-icon">✦</div>
+        <div class="logo-text">AeroJobs</div>
+    </a>
     <ul class="nav-links">
-        <li><a href="/home">Home</a></li>
+        <li><a href="/home">Explore</a></li>
         <li><a href="/addjobs">Add Jobs</a></li>
-        <li><a href="/contact">Contact</a></li>
+        <li><a href="/contact">Support</a></li>
+        <li><a href="/contact" class="nav-right-btn">Contact Us</a></li>
     </ul>
 </nav>
 
-<!-- Main Landing Area -->
 <div class="hero">
-    <div class="ambient-glow"></div>
-    <h1>Next-Gen Career Portal</h1>
-    <p>Discover top opportunities or recruit the brightest minds. Our intelligent ecosystem connects talent with visionary companies instantly. The future of your career begins here.</p>
+    <div class="floating-pill pill-1">
+        <span class="pill-dot"></span> Web Developer Roles
+    </div>
+    <div class="floating-pill pill-2">
+        <span class="pill-dot" style="background:#a855f7;"></span> Tech Talent Matched
+    </div>
+
+    <div class="announcement-badge">
+        <span>✨ Seamless Hiring Platform</span>
+    </div>
+
+    <h1>Simplify Tech Recruitment <span>Boost Productivity</span></h1>
+    <p>Easily manage job postings and discover top verified developer talent from start to finish.</p>
+
     <div class="cta-buttons">
-        <a href="/home" class="btn btn-primary">Search Jobs</a>
-        <a href="/addjobs" class="btn btn-secondary">Add a Job</a>
+        <a href="/home" class="btn btn-primary">Get Started Free</a>
+        <a href="/addjobs" class="btn btn-secondary">Post a Position</a>
     </div>
 </div>
 

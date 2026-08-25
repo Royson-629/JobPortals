@@ -4,140 +4,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Job - Aero Jobs</title>
+    <title>Post a Position - Aero Jobs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Reset & Basics */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --dark-btn: #0f172a;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --bg-page: #f8fafc;
+            --card-bg: #ffffff;
+            --border-subtle: #e2e8f0;
         }
 
         body {
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: #ffffff;
+            background-color: var(--bg-page);
+            background-image:
+                    radial-gradient(at 10% 10%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
+                    radial-gradient(at 90% 20%, rgba(168, 85, 247, 0.08) 0px, transparent 50%);
+            color: var(--text-dark);
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
-        /* Glassmorphism Navbar */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 18px 8%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-subtle);
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .logo {
-            font-size: 26px;
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-dark);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
             font-weight: 800;
-            color: #00e5ff;
-            text-shadow: 0 0 10px rgba(0, 229, 255, 0.6);
-            letter-spacing: 2px;
-            cursor: pointer;
+            font-size: 18px;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
         }
 
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 40px;
+            align-items: center;
+            gap: 32px;
         }
 
         .nav-links li a {
             text-decoration: none;
-            color: #d1d5db;
-            font-size: 16px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 8px 16px;
-            border-radius: 8px;
+            color: var(--text-muted);
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.2s ease;
         }
 
         .nav-links li a.active, .nav-links li a:hover {
-            color: #ffffff;
-            background: rgba(0, 229, 255, 0.1);
-            box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+            color: var(--primary);
         }
 
-        /* Ambient Glow Effects */
-        .ambient-glow-1 {
-            position: fixed;
-            width: 500px;
-            height: 500px;
-            background: #e000ff;
-            border-radius: 50%;
-            filter: blur(250px);
-            z-index: -1;
-            opacity: 0.15;
-            top: -10%;
-            right: -10%;
+        .nav-right-btn {
+            background: var(--dark-btn);
+            color: #ffffff !important;
+            padding: 10px 22px;
+            border-radius: 9999px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s ease;
         }
 
-        .ambient-glow-2 {
-            position: fixed;
-            width: 400px;
-            height: 400px;
-            background: #00e5ff;
-            border-radius: 50%;
-            filter: blur(200px);
-            z-index: -1;
-            opacity: 0.15;
-            bottom: -10%;
-            left: -10%;
-        }
-
-        /* Form Container */
         .container {
-            padding: 50px 5%;
+            padding: 50px 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            animation: fadeInUp 0.8s ease-out;
         }
 
         .form-wrapper {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 40px;
+            background: #ffffff;
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            padding: 44px;
             width: 100%;
-            max-width: 800px;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            position: relative;
-            overflow: hidden;
+            max-width: 760px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
         }
 
-        /* Form Header */
         .form-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 36px;
         }
 
         .form-header h2 {
-            font-size: 2.2rem;
-            background: linear-gradient(to right, #00e5ff, #e000ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: -0.8px;
+            margin-bottom: 8px;
         }
 
         .form-header p {
-            color: #b3b3b3;
-            font-size: 1rem;
+            color: var(--text-muted);
+            font-size: 15px;
         }
 
-        /* Form Grid */
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -155,43 +159,36 @@
         }
 
         .form-group label {
-            color: #00e5ff;
-            font-size: 14px;
-            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 13px;
+            font-weight: 700;
             margin-bottom: 8px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+            letter-spacing: 0.3px;
         }
 
         .form-control {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(0, 229, 255, 0.2);
-            border-radius: 10px;
-            padding: 15px;
-            color: #ffffff;
-            font-size: 16px;
+            background: #f8fafc;
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 13px 16px;
+            color: var(--text-dark);
+            font-size: 15px;
             outline: none;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         .form-control::placeholder {
-            color: #6b7280;
+            color: #94a3b8;
         }
 
         .form-control:focus {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: #00e5ff;
-            box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+            background: #ffffff;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
         }
 
         select.form-control {
-            appearance: none;
             cursor: pointer;
-        }
-
-        select.form-control option {
-            background-color: #24243e;
-            color: #fff;
         }
 
         textarea.form-control {
@@ -199,184 +196,153 @@
             min-height: 120px;
         }
 
-        /* Submit Button */
         .submit-btn {
-            background: linear-gradient(135deg, #00e5ff, #0088ff);
+            background: var(--primary);
             color: #ffffff;
             border: none;
-            padding: 16px;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 10px;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 9999px;
             cursor: pointer;
             width: 100%;
-            margin-top: 20px;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            margin-top: 15px;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
         }
 
         .submit-btn:hover {
-            box-shadow: 0 0 25px rgba(0, 229, 255, 0.8);
-            transform: translateY(-3px);
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .form-grid { grid-template-columns: 1fr; }
-            .form-group.full-width { grid-column: span 1; }
-            nav { flex-direction: column; gap: 15px; padding: 15px 5%; }
-            .nav-links { flex-wrap: wrap; justify-content: center; gap: 10px; }
-        }
-
-        /* Modern Multi-Select Custom Styling */
+        /* Multi-Select Tags */
         .multi-select-wrapper {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
             cursor: text;
-            min-height: 52px;
+            min-height: 50px;
             align-items: center;
-            padding: 10px 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(0, 229, 255, 0.2);
-            border-radius: 10px;
-            transition: all 0.3s ease;
+            padding: 8px 14px;
+            background: #f8fafc;
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            transition: all 0.2s ease;
         }
 
         .multi-select-wrapper:focus-within {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: #00e5ff;
-            box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+            background: #ffffff;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
         }
 
         .tech-search-input {
             background: transparent;
             border: none;
-            color: #ffffff;
-            font-size: 16px;
+            color: var(--text-dark);
+            font-size: 15px;
             outline: none;
             flex-grow: 1;
-            min-width: 150px;
+            min-width: 140px;
         }
 
-        .tech-search-input::placeholder { color: #6b7280; }
+        .tech-search-input::placeholder { color: #94a3b8; }
 
         .selected-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 
         .tech-tag {
-            background: rgba(0, 229, 255, 0.15);
-            border: 1px solid rgba(0, 229, 255, 0.4);
-            color: #00e5ff;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 14px;
+            background: #e0e7ff;
+            border: 1px solid #c7d2fe;
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 13px;
+            font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 8px;
-            box-shadow: 0 0 10px rgba(0, 229, 255, 0.1);
+            gap: 6px;
         }
 
-        .tech-tag em {
-            font-style: normal;
-            font-weight: 500;
-        }
+        .tech-tag em { font-style: normal; }
 
         .tech-tag .remove-tag {
             cursor: pointer;
             font-weight: bold;
-            color: #00e5ff;
-            transition: color 0.3s;
-            font-size: 16px;
+            color: var(--primary);
+            transition: color 0.2s;
+            font-size: 14px;
             line-height: 1;
         }
 
-        .tech-tag .remove-tag:hover { color: #e000ff; }
+        .tech-tag .remove-tag:hover { color: #ef4444; }
 
         .tech-dropdown {
             position: absolute;
             top: 100%;
             left: 0;
             width: 100%;
-            background: rgba(36, 36, 62, 0.98);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(0, 229, 255, 0.3);
-            border-radius: 10px;
-            margin-top: 5px;
-            max-height: 250px;
+            background: #ffffff;
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            margin-top: 6px;
+            max-height: 220px;
             overflow-y: auto;
             z-index: 1000;
             display: none;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
         }
 
         .tech-dropdown.show { display: block; }
 
         .tech-option {
-            padding: 12px 15px;
+            padding: 10px 16px;
             cursor: pointer;
-            color: #cbd5e1;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 15px;
+            color: #334155;
+            transition: all 0.2s ease;
+            font-size: 14px;
+            font-weight: 500;
         }
 
-        .tech-option:last-child { border-bottom: none; }
         .tech-option:hover {
-            background: rgba(0, 229, 255, 0.15);
-            color: #00e5ff;
-            padding-left: 25px;
+            background: #f1f5f9;
+            color: var(--primary);
+            padding-left: 20px;
         }
-
-        .tech-dropdown::-webkit-scrollbar { width: 8px; }
-        .tech-dropdown::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 10px; }
-        .tech-dropdown::-webkit-scrollbar-thumb { background: rgba(0, 229, 255, 0.4); border-radius: 10px; }
-        .tech-dropdown::-webkit-scrollbar-thumb:hover { background: #00e5ff; }
 
         @media (max-width: 768px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .form-group.full-width { grid-column: span 1; }
             nav { flex-direction: column; gap: 15px; padding: 15px 5%; }
             .nav-links { flex-wrap: wrap; justify-content: center; gap: 10px; }
-            .search-box { flex-direction: column; background: transparent; border: none; padding: 0; gap: 10px; }
-            .search-box input { border-radius: 15px; border: 1px solid rgba(0, 229, 255, 0.3); background: rgba(255, 255, 255, 0.05); }
-            .search-btn { padding: 15px; border-radius: 15px; }
-            .job-grid { grid-template-columns: 1fr; }
-
+        }
     </style>
 </head>
 <body>
 
-<!-- Ambient Background Glows -->
-<div class="ambient-glow-1"></div>
-<div class="ambient-glow-2"></div>
-
-<!-- Top Dashboard Navbar -->
 <nav>
-    <div class="logo">AERO JOBS</div>
+    <a href="/home" class="logo-wrap">
+        <div class="logo-icon">✦</div>
+        <div class="logo-text">AeroJobs</div>
+    </a>
     <ul class="nav-links">
         <li><a href="/home">Home</a></li>
         <li><a href="/addjobs" class="active">Add Jobs</a></li>
-        <li><a href="/contact">Contact</a></li>
+        <li><a href="/contact">Support</a></li>
+        <li><a href="/contact" class="nav-right-btn">Contact Us</a></li>
     </ul>
 </nav>
 
-<!-- Job Submission Form -->
 <div class="container">
     <div class="form-wrapper">
         <div class="form-header">
             <h2>Broadcast a Position</h2>
-            <p>Deploy your requirements to our talent network.</p>
+            <p>Deploy your requirements to our verified technical talent network.</p>
         </div>
 
         <form action="handleform" method="POST">
             <div class="form-grid">
-
                 <div class="form-group">
                     <label for="jobTitle">Job Title</label>
                     <input type="text" name="jobtitle" id="jobTitle" class="form-control" placeholder="e.g. Senior Frontend Developer" required>
@@ -408,20 +374,13 @@
                     </select>
                 </div>
 
-                <!-- Custom Modern Multi-Select Section -->
                 <div class="form-group full-width" style="position: relative;">
                     <label>Key Technologies / Tags</label>
-
-                    <!-- Visual Input Container -->
                     <div class="multi-select-wrapper" id="techWrapper">
                         <div class="selected-tags" id="selectedTags"></div>
                         <input type="text" id="techSearch" class="tech-search-input" placeholder="Search technologies..." autocomplete="off">
                     </div>
-
-                    <!-- Dropdown List -->
                     <div class="tech-dropdown" id="techDropdown"></div>
-
-                    <!-- Hidden container where real inputs are generated for the servlet -->
                     <div id="hiddenInputsContainer"></div>
                 </div>
 
@@ -431,12 +390,11 @@
                 </div>
             </div>
 
-            <button type="submit" class="submit-btn">Initialize Listing</button>
+            <button type="submit" class="submit-btn">Publish Position</button>
         </form>
     </div>
 </div>
 
-<!-- Robust JavaScript without JSP EL conflicts -->
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const availableTech = [
@@ -451,7 +409,6 @@
             "CompTIA Security+", "Certified Ethical Hacker (CEH)", "Scrum", "Agile", "Kanban"
         ];
 
-        // Deduplicate list
         const uniqueTechList = [...new Set(availableTech)];
         const selectedTech = [];
 
@@ -472,7 +429,7 @@
             if (filtered.length === 0) {
                 const emptyItem = document.createElement('div');
                 emptyItem.className = 'tech-option';
-                emptyItem.style.color = '#6b7280';
+                emptyItem.style.color = '#94a3b8';
                 emptyItem.style.cursor = 'default';
                 emptyItem.textContent = 'No matching technologies';
                 techDropdown.appendChild(emptyItem);
@@ -508,7 +465,6 @@
         }
 
         function updateUI() {
-            // Rebuild visible chips safely using DOM methods
             selectedTagsContainer.innerHTML = "";
             selectedTech.forEach(tech => {
                 const tag = document.createElement('div');
@@ -530,7 +486,6 @@
                 selectedTagsContainer.appendChild(tag);
             });
 
-            // Rebuild hidden form inputs for the Servlet backend
             hiddenInputsContainer.innerHTML = "";
             selectedTech.forEach(tech => {
                 const input = document.createElement('input');
@@ -544,7 +499,6 @@
             techSearch.focus();
         }
 
-        // Open/filter dropdown on focus & input
         techSearch.addEventListener('focus', () => {
             renderDropdown(techSearch.value);
             techDropdown.classList.add('show');
@@ -559,7 +513,6 @@
             techSearch.focus();
         });
 
-        // Close dropdown when clicking outside
         document.addEventListener('click', (e) => {
             if (!techWrapper.contains(e.target) && !techDropdown.contains(e.target)) {
                 techDropdown.classList.remove('show');
