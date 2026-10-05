@@ -311,7 +311,7 @@
                     <h3>${job.jobtitle}</h3>
                     <div class="company">${job.companyname}</div>
                 </div>
-                <p>${job.desc}</p>
+                <p>${job.description}</p>
                 <div class="job-tags">
                     <span class="tag tag-model">${job.work_model}</span>
                     <c:forEach var="t" items="${job.techs}">

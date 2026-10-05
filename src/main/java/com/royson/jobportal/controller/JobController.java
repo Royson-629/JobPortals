@@ -58,4 +58,10 @@ public class JobController {
         }
     }
 
+    @GetMapping("load")
+    public String loaddata(){
+        jobservice.load();
+        return "index";
+    }
+
 }

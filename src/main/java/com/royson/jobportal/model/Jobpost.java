@@ -1,5 +1,7 @@
 package com.royson.jobportal.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,11 +13,13 @@ import java.util.List;
 @Component
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class Jobpost {
 
+    @Id
     private String jobtitle;
     private String companyname;
-    private String desc;
+    private String description;
     private String emp_type;
     private List<String> techs;
     private String work_model;
